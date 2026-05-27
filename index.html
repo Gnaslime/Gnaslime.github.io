@@ -1,35 +1,910 @@
+```html id="p8q4nz"
 <!DOCTYPE html>
-<html>
-    <head>
-        <title> Meu Site Legal </title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="index.css">
-        <link rel="stylesheet" href="cabecalho.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,&display=block">
-        <link rel="stylesheet" href="reset.css">
-        <meta name="viewport" content="width=device-width">
-    </head>
-    <body>
-        <header class="cabecalho">
-            <a href="index.html">
-                <img class="cabecalho__logo" src="logo.png" title="Ir para pagina inicial" alt="youngboy">
-            </a>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Escola Acessível Pro</title>
 
-            <nav>
-                <ul class="cabecalho__menu">
-                    <li><a class="cabecalho__item-menu"></a href="sobre.html#contato">contato</a></li>
-                    <li><a class="cabecalho__item-menu"></a href="#">entrar</a></li>
-                    <li><a class="cabecalho__item-menu"></a href="#">produtos</a></li>
-                </ul>
-            </nav>
-        </header>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 
-        <main>
-            conteudo do lil jeff
-        </main>
+<style>
 
-        <footer>
-            rodape
-        </footer>
-    </body>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:linear-gradient(135deg,#081018,#132335);
+  color:white;
+  min-height:100vh;
+  padding:20px;
+}
+
+/* TELAS */
+
+.login-screen,
+.register-screen{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#081018,#132335);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+.register-screen{
+  display:none;
+}
+
+.login-box,
+.register-box{
+  width:100%;
+  max-width:420px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  backdrop-filter:blur(15px);
+  border-radius:30px;
+  padding:35px;
+}
+
+.login-logo{
+  width:85px;
+  height:85px;
+  margin:auto;
+  margin-bottom:20px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#00d084,#00f2a6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:38px;
+}
+
+h1{
+  text-align:center;
+  margin-bottom:10px;
+}
+
+p{
+  text-align:center;
+  color:#a1a1aa;
+  margin-bottom:25px;
+}
+
+.input-group{
+  margin-bottom:18px;
+}
+
+.input-group label{
+  display:block;
+  margin-bottom:8px;
+}
+
+.input-group input{
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:16px;
+  background:#111827;
+  color:white;
+  outline:none;
+}
+
+.login-btn,
+.register-toggle,
+.back-login,
+.voice-btn{
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:18px;
+  background:linear-gradient(135deg,#00d084,#00a96e);
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.register-toggle,
+.back-login{
+  background:#1f2937;
+  margin-top:10px;
+}
+
+.divider{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:20px 0;
+  color:#9ca3af;
+}
+
+.divider::before,
+.divider::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:rgba(255,255,255,.1);
+}
+
+.login-msg{
+  margin-top:15px;
+  text-align:center;
+  color:#ff7b7b;
+}
+
+/* APP */
+
+.app{
+  max-width:1100px;
+  margin:auto;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+  flex-wrap:wrap;
+  gap:15px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.logo-box{
+  width:60px;
+  height:60px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#00d084,#00f2a6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+}
+
+.badge{
+  background:rgba(0,208,132,.12);
+  padding:8px 14px;
+  border-radius:999px;
+  font-size:13px;
+}
+
+.status{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:280px 1fr;
+  gap:20px;
+}
+
+.sidebar,
+.card{
+  background:rgba(255,255,255,.05);
+  border-radius:24px;
+  padding:20px;
+}
+
+.menu{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.menu button{
+  border:none;
+  padding:16px;
+  border-radius:18px;
+  background:#161b22;
+  color:white;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.menu button:hover{
+  background:linear-gradient(135deg,#00d084,#00a96e);
+}
+
+.main{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.quick-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+}
+
+.quick{
+  background:#161b22;
+  padding:20px;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+.quick i{
+  font-size:28px;
+  color:#00d084;
+  margin-bottom:10px;
+}
+
+.shortcuts{
+  display:grid;
+  gap:10px;
+}
+
+.shortcut{
+  background:#161b22;
+  padding:14px;
+  border-radius:14px;
+  display:flex;
+  justify-content:space-between;
+}
+
+kbd{
+  background:black;
+  padding:5px 10px;
+  border-radius:8px;
+}
+
+.transcript{
+  margin-top:15px;
+  background:#161b22;
+  padding:15px;
+  border-radius:14px;
+}
+
+.content{
+  line-height:1.8;
+  color:#d4d4d4;
+}
+
+footer{
+  text-align:center;
+  margin-top:20px;
+  color:#9ca3af;
+}
+
+@media(max-width:900px){
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<div class="login-screen" id="loginScreen">
+
+  <div class="login-box">
+
+    <div class="login-logo">
+      <i class="ti ti-accessible"></i>
+    </div>
+
+    <h1>Escola Acessível</h1>
+
+    <p>
+      Faça login para Entrar
+    </p>
+
+    <form id="loginForm">
+
+      <div class="input-group">
+        <label>Matrícula</label>
+
+        <input
+          type="text"
+          id="user"
+          placeholder="Digite sua matrícula"
+          required
+        >
+      </div>
+
+      <div class="input-group">
+        <label>Senha</label>
+
+        <input
+          type="password"
+          id="pass"
+          placeholder="Digite sua senha"
+          required
+        >
+      </div>
+
+      <button type="submit" class="login-btn">
+        Entrar
+      </button>
+
+    </form>
+
+    <div class="divider">
+      <span>ou</span>
+    </div>
+
+    <button class="register-toggle" onclick="openRegister()">
+      Criar conta
+    </button>
+
+    <button class="register-toggle" onclick="openProfessorLogin()">
+      Entrar como professor
+    </button>
+
+    <div class="login-msg" id="loginMsg"></div>
+
+  </div>
+
+</div>
+
+<!-- CADASTRO -->
+
+<div class="register-screen" id="registerScreen">
+
+  <div class="register-box">
+
+    <div class="login-logo">
+      <i class="ti ti-user-plus"></i>
+    </div>
+
+    <h1>Criar conta</h1>
+
+    <p>
+      Cadastro escolar acessível
+    </p>
+
+    <form id="registerForm">
+
+      <div class="input-group">
+        <label>Nome completo</label>
+
+        <input
+          type="text"
+          id="regName"
+          placeholder="Digite seu nome"
+          required
+        >
+      </div>
+
+      <div class="input-group">
+        <label>Matrícula</label>
+
+        <input
+          type="text"
+          id="regUser"
+          placeholder="Digite sua matrícula"
+          required
+        >
+      </div>
+
+      <div class="input-group">
+        <label>Senha</label>
+
+        <input
+          type="password"
+          id="regPass"
+          placeholder="Crie uma senha"
+          required
+        >
+      </div>
+
+      <button type="submit" class="login-btn">
+        Finalizar cadastro
+      </button>
+
+    </form>
+
+    <button class="back-login" onclick="closeRegister()">
+      Voltar
+    </button>
+
+    <div class="login-msg" id="registerMsg"></div>
+
+  </div>
+
+</div>
+
+<!-- LOGIN PROFESSOR -->
+
+<div class="register-screen" id="professorScreen">
+
+  <div class="register-box">
+
+    <div class="login-logo">
+      <i class="ti ti-school"></i>
+    </div>
+
+    <h1>Professor</h1>
+
+    <p>
+      Acesso exclusivo para professores
+    </p>
+
+    <form id="professorForm">
+
+      <div class="input-group">
+        <label>ID do Professor</label>
+
+        <input
+          type="text"
+          id="profUser"
+          placeholder="Digite o ID"
+          required
+        >
+      </div>
+
+      <div class="input-group">
+        <label>Senha</label>
+
+        <input
+          type="password"
+          id="profPass"
+          placeholder="Digite a senha"
+          required
+        >
+      </div>
+
+      <button type="submit" class="login-btn">
+        Entrar como professor
+      </button>
+
+    </form>
+
+    <button class="back-login" onclick="closeProfessorLogin()">
+      Voltar
+    </button>
+
+    <div class="login-msg" id="profMsg"></div>
+
+  </div>
+
+</div>
+
+<!-- APP -->
+
+<div class="app">
+
+  <div class="topbar">
+
+    <div class="logo">
+
+      <div class="logo-box">
+        <i class="ti ti-accessible"></i>
+      </div>
+
+      <div>
+        <h1>Escola Acessível Pro</h1>
+        <p>Navegação simplificada</p>
+      </div>
+
+    </div>
+
+    <div class="status">
+      <div class="badge">⌨ Teclado</div>
+      <div class="badge">🎤 Voz</div>
+      <div class="badge">⚡ Acessível</div>
+    </div>
+
+  </div>
+
+  <div class="grid">
+
+    <aside class="sidebar">
+
+      <div class="menu">
+
+        <button onclick="showContent('inicio')">
+          <i class="ti ti-home"></i>
+          Início
+        </button>
+
+        <button onclick="showContent('notas')">
+          <i class="ti ti-report"></i>
+          Notas
+        </button>
+
+        <button onclick="showContent('assistente')">
+          <i class="ti ti-brain"></i>
+          Assistente IA
+        </button>
+
+        <button onclick="showContent('acessibilidade')">
+          <i class="ti ti-keyboard"></i>
+          Acessibilidade
+        </button>
+
+      </div>
+
+    </aside>
+
+    <main class="main">
+
+      <div class="card">
+
+        <h2>Educação acessível</h2>
+
+        <br>
+
+        <p>
+          Sistema desenvolvido para reduzir
+          o uso intenso do mouse e digitação rápida.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>🎤 Comando de voz</h3>
+
+        <br>
+
+        <button class="voice-btn" onclick="toggleVoice()">
+          Ativar voz
+        </button>
+
+        <div class="transcript" id="transcript">
+          Diga:
+          "abrir notas"
+          ou
+          "abrir início"
+        </div>
+
+      </div>
+
+      <div class="quick-grid">
+
+        <div class="quick" onclick="showContent('notas')">
+          <i class="ti ti-school"></i>
+          <h3>Notas</h3>
+        </div>
+
+        <div class="quick" onclick="showContent('assistente')">
+          <i class="ti ti-bulb"></i>
+          <h3>Assistente IA</h3>
+        </div>
+
+        <div class="quick" onclick="showContent('acessibilidade')">
+          <i class="ti ti-accessible"></i>
+          <h3>Acessibilidade</h3>
+        </div>
+
+      </div>
+
+      <div class="card">
+
+        <h3>⌨ Atalhos</h3>
+
+        <br>
+
+        <div class="shortcuts">
+
+          <div class="shortcut">
+            <span>Voz</span>
+            <kbd>ALT + V</kbd>
+          </div>
+
+          <div class="shortcut">
+            <span>Início</span>
+            <kbd>ALT + H</kbd>
+          </div>
+
+          <div class="shortcut">
+            <span>Ajuda</span>
+            <kbd>F1</kbd>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="card">
+
+        <h3>📚 Conteúdo</h3>
+
+        <br>
+
+        <div class="content" id="contentArea">
+          Bem-vindo ao sistema acessível.
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <footer>
+    Sistema escolar otimizado para acessibilidade.
+  </footer>
+
+</div>
+
+<script>
+
+/* CONTEÚDOS */
+
+const content = {
+
+  inicio:
+  `
+  Bem-vindo ao sistema acessível inteligente.
+  Utilize atalhos de teclado ou voz.
+  `,
+
+  notas:
+  `
+  Matemática: 9.0<br>
+  Português: 8.5<br>
+  Ciências: 9.3<br>
+  História: 8.9
+  `,
+
+  assistente:
+  `
+  Assistente inteligente para alunos
+  com dificuldade motora ou baixa velocidade
+  de digitação.
+  `,
+
+  acessibilidade:
+  `
+  • Navegação por teclado<br>
+  • Reconhecimento de voz<br>
+  • Botões acessíveis<br>
+  • Redução de cliques
+  `
+};
+
+function showContent(section){
+
+  document.getElementById('contentArea')
+  .innerHTML = content[section];
+
+}
+
+/* LOGIN E CADASTRO */
+
+let savedUser = 'aluno';
+let savedPass = '1234';
+
+document
+.getElementById('loginForm')
+.addEventListener('submit',(e)=>{
+
+  e.preventDefault();
+
+  const user =
+  document.getElementById('user').value;
+
+  const pass =
+  document.getElementById('pass').value;
+
+  if(user === savedUser &&
+     pass === savedPass){
+
+    document.getElementById('loginScreen')
+    .style.display='none';
+
+  }else{
+
+    document.getElementById('loginMsg')
+    .innerText='Matrícula ou senha inválida';
+
+  }
+
+});
+
+function openRegister(){
+
+  document.getElementById('registerScreen')
+  .style.display='flex';
+}
+
+function closeRegister(){
+
+  document.getElementById('registerScreen')
+  .style.display='none';
+}
+
+document
+.getElementById('registerForm')
+.addEventListener('submit',(e)=>{
+
+  e.preventDefault();
+
+  const name =
+  document.getElementById('regName').value;
+
+  const user =
+  document.getElementById('regUser').value;
+
+  const pass =
+  document.getElementById('regPass').value;
+
+  savedUser = user;
+  savedPass = pass;
+
+  document.getElementById('registerMsg')
+  .innerText =
+  `Conta criada com sucesso, ${name}!`;
+
+  setTimeout(()=>{
+
+    closeRegister();
+
+  },1500);
+
+});
+
+/* LOGIN PROFESSOR */
+
+let professorUser = 'professor';
+let professorPass = '4321';
+
+function openProfessorLogin(){
+
+  document.getElementById('professorScreen')
+  .style.display='flex';
+}
+
+function closeProfessorLogin(){
+
+  document.getElementById('professorScreen')
+  .style.display='none';
+}
+
+document
+.getElementById('professorForm')
+.addEventListener('submit',(e)=>{
+
+  e.preventDefault();
+
+  const user =
+  document.getElementById('profUser').value;
+
+  const pass =
+  document.getElementById('profPass').value;
+
+  if(user === professorUser &&
+     pass === professorPass){
+
+    document.getElementById('professorScreen')
+    .style.display='none';
+
+    document.getElementById('loginScreen')
+    .style.display='none';
+
+    document.getElementById('contentArea')
+    .innerHTML =
+    `
+    <h2>👨‍🏫 Painel do Professor</h2>
+    <br>
+
+    • Gerenciar notas<br>
+    • Criar atividades<br>
+    • Publicar avisos<br>
+    • Acompanhar desempenho
+    `;
+
+  }else{
+
+    document.getElementById('profMsg')
+    .innerText='ID ou senha inválidos';
+
+  }
+
+});
+
+/* VOZ */
+
+let recognition;
+let listening=false;
+
+function toggleVoice(){
+
+  if(!('webkitSpeechRecognition' in window ||
+       'SpeechRecognition' in window)){
+
+    alert('Seu navegador não suporta voz.');
+    return;
+  }
+
+  if(listening){
+
+    recognition.stop();
+
+    listening=false;
+
+    return;
+  }
+
+  const SpeechRecognition =
+  window.SpeechRecognition ||
+  window.webkitSpeechRecognition;
+
+  recognition = new SpeechRecognition();
+
+  recognition.lang='pt-BR';
+
+  recognition.onresult=(e)=>{
+
+    const text =
+    e.results[0][0].transcript.toLowerCase();
+
+    document.getElementById('transcript')
+    .innerHTML='🎤 '+text;
+
+    if(text.includes('notas')){
+      showContent('notas');
+    }
+
+    if(text.includes('início') ||
+       text.includes('inicio')){
+      showContent('inicio');
+    }
+
+    if(text.includes('acessibilidade')){
+      showContent('acessibilidade');
+    }
+
+    if(text.includes('assistente')){
+      showContent('assistente');
+    }
+
+  };
+
+  recognition.start();
+
+  listening=true;
+}
+
+/* ATALHOS */
+
+document.addEventListener('keydown',(e)=>{
+
+  if(e.altKey && e.key==='v'){
+    toggleVoice();
+  }
+
+  if(e.altKey &&
+    (e.key==='h' || e.key==='H')){
+    showContent('inicio');
+  }
+
+  if(e.key==='F1'){
+
+    alert(
+      'Atalhos:\n\nALT + V → Voz\nALT + H → Início'
+    );
+
+  }
+
+});
+
+</script>
+
+</body>
 </html>
+```
